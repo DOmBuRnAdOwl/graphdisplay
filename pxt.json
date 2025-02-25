@@ -1,18 +1,15 @@
 {
     "name": "graphDisplay",
-    "description": "",
+    "description": "an extension for plotting graphs on a display shield",
     "dependencies": {
         "core": "*",
-        "radio": "*",
-        "microphone": "*"
+        "graphDisplay": "github:domburnadowl/pxt-graphdisplay#a003094aca743bd101386953462c3b6ece6db6b0"
     },
     "files": [
-        "main.blocks",
-        "main.ts",
+        "graph.ts",
         "README.md"
     ],
     "testFiles": [
-        "test.ts"
     ],
     "targetVersions": {
         "target": "7.0.57",

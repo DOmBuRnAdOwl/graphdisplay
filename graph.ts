@@ -291,14 +291,36 @@ namespace displayGraph {
         SHOWKEY=keyChoice;
         redraw();
     }
+
+    //function that retrieved heading from a datalogger file
+    //and then sums each column to find  a total
+    //these totals can then be plotted on a graph
+    //can handle columns being added within the log
+    //introduces a requirment on datalgger, this probably isnt the place for it
+    //%block="sum datalogger contents"
+    export function sumDataLogger():inputData[]{
+        let headers = datalogger.getRows(0, 1);
+        let titles = headers.split(",");
+        let colCount = titles.length;
+
+        let sums: displayGraph.inputData[] = [];
+        for (let i = 1; i < titles.length; i++) {
+            sums.push(new displayGraph.inputData(titles[i], 0, i+1));
+        }
+        for (let i = 1; i < datalogger.getNumberOfRows(); i++) {
+            let row = datalogger.getRows(i, 1);
+            let values = row.split(",");
+            if(values.length != colCount){
+                for (let j = colCount; j < values.length; j++) {
+                    sums.push(new displayGraph.inputData(values[j], 0, j+1));
+                }
+                colCount = values.length;
+            }else{
+                for (let j = 0; j < values.length-1; j++) {
+                    sums[j].value +=parseFloat(values[j+1]);
+                }
+            }
+        }
+        return sums;
+    }
 }
-
-
-let mydata = [
-    new displayGraph.inputData("Owl", 18, 2),
-    new displayGraph.inputData("Pigeon", 4, 3),
-    new displayGraph.inputData("Dove", 12, 4)
-];
-displayGraph.barChart(mydata);
-displayGraph.drawKey(true);
-displayGraph.setTitle("Count of bird species seen");

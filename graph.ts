@@ -100,7 +100,9 @@ namespace displayGraph {
 
     function drawBarChart(): void {
         BASE_BORDER =10;
-
+        if(data.length == 0){
+            return;
+        }
         let minValue = data[0].value;
         let maxValue = data[0].value;
         let values: number[] = [];
@@ -195,6 +197,9 @@ namespace displayGraph {
     }
 
     function drawPieChart(): void {
+        if(data.length == 0){
+            return;
+        }
         let values: number[] = [];
         for (let i = 0; i < data.length; i++) {
             values.push(data[i].value);

@@ -109,12 +109,15 @@ namespace displayGraph {
     //% data.shadow=lists_create_with
     //% data.defl=graphCreateInput
     //% weight=100
-    export function pieChartImpl(data: inputData[]): void {
+    export function pieChartImpl(data: inputData[],includeKey=false): void {
         screen().fill(1); // fill with white
         const SCREEN_WIDTH = bitmaps.width(screen());
         const SCREEN_HEIGHT = bitmaps.height(screen());
 
-        drawKey(data);
+        if(includeKey){
+            drawKey(data);
+        }
+
         let values: number[] = [];
         for (let i = 0; i < data.length; i++) {
             values.push(data[i].value);
@@ -133,9 +136,14 @@ namespace displayGraph {
         // valsScaled is between 0 and 1
 
         const radius = (SCREEN_HEIGHT / 2) * 0.8;
-        const xMid = SCREEN_WIDTH - (radius + 5);
-        const yMid = SCREEN_HEIGHT / 2;
+        const yMid = Math.floor(SCREEN_HEIGHT / 2);
 
+        let xMid = Math.floor(SCREEN_WIDTH/2);
+        
+        if(includeKey){
+            drawKey(data);
+            xMid = SCREEN_WIDTH - (radius + 5);
+        }
 
         for (let x = -radius; x <= radius; x++) {
             for (let y = -radius; y <= radius; y++) {

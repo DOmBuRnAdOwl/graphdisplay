@@ -3,6 +3,7 @@
     "description": "an extension for plotting graphs on a display shield",
     "dependencies": {
         "core": "*",
+        "datalogger": "*",
         "display-shield": "github:microbit-apps/display-shield#v1.0.4"
     },
     "files": [

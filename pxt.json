@@ -3,7 +3,7 @@
     "description": "an extension for plotting graphs on a display shield",
     "dependencies": {
         "core": "*",
-        "graphDisplay": "github:domburnadowl/pxt-graphdisplay#a003094aca743bd101386953462c3b6ece6db6b0"
+        "display-shield": "github:microbit-apps/display-shield#v1.0.4"
     },
     "files": [
         "graph.ts",

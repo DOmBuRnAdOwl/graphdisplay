@@ -322,7 +322,9 @@ namespace displayGraph {
                 colCount = values.length;
             }else{
                 for (let j = 0; j < values.length-1; j++) {
-                    sums[j].value +=parseFloat(values[j+1]);
+                    if(values[j+1]!=""){
+                        sums[j].value +=parseFloat(values[j+1]);
+                    }
                 }
             }
         }
